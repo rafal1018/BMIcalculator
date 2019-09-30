@@ -1,5 +1,6 @@
 package akademiakodu.BMIcalculator.Controller;
 
+import akademiakodu.BMIcalculator.Model.User;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.stereotype.Service;
@@ -16,6 +17,15 @@ public class LoginController {
     public ModelAndView login() {
         ModelAndView modelAndView = new ModelAndView();
         modelAndView.setViewName("login");
+        return modelAndView;
+    }
+
+    @GetMapping(value = "/registration")
+    public ModelAndView registration() {
+        ModelAndView modelAndView = new ModelAndView();
+        User user = new User();
+        modelAndView.addObject("user", user);
+        modelAndView.setViewName("registration");
         return modelAndView;
     }
 }
