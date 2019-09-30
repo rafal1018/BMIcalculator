@@ -1,9 +1,9 @@
 package akademiakodu.BMIcalculator.Controller;
 
 import akademiakodu.BMIcalculator.Model.User;
+import akademiakodu.BMIcalculator.UserService.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
-import org.springframework.stereotype.Service;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -15,7 +15,7 @@ import javax.validation.Valid;
 public class LoginController {
 
     @Autowired
-    private Service service;
+    private UserService userService;
 
     @GetMapping(value = {"/", "/login"})
     public ModelAndView login() {
@@ -36,7 +36,7 @@ public class LoginController {
     @PostMapping(value = "/registration")
     public ModelAndView createNewUser(@Valid User user, BindingResult bindingResult) {
         ModelAndView modelAndView = new ModelAndView();
-        User userExists = service.findUserByEmail(user.getEmail());
+        User userExists = userService.findUserByEmail(user.getEmail());
         if (userExists != null) {
             bindingResult
                     .rejectValue("email", "error.user",
@@ -45,7 +45,7 @@ public class LoginController {
         if (bindingResult.hasErrors()) {
             modelAndView.setViewName("registration");
         } else {
-            service.saveUser(user);
+            userService.saveUser(user);
             modelAndView.addObject("successMessage", "User has been registered successfully");
             modelAndView.addObject("user", new User());
             modelAndView.setViewName("registration");
