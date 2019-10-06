@@ -16,12 +16,12 @@
         <div class="form-cont center">
             <form>
                 <div class="form-field">
-                    <label>height</label>
+                    <label> height</label>
                     <input type="number" placeholder="...cm"/>
                 </div>
                 <div class="form-field">
                     <label>weight</label>
-                    <input type="number" placeholder="...kg"/>
+                    <input type="number"  placeholder="...kg"/>
                 </div>
                 <div class="form-field">
                     <label>sex</label>
@@ -33,10 +33,17 @@
                 <div>
                     <input type="submit" value="Calc me!"/>
                 </div>
+
             </form>
             <div>
                 <label>your score</label>
                 <input type="number" disabled="true" value=""/>
+            </div>
+            <div class="panel panel-primary">
+                <div class="panel-heading">
+                    <span th:utext="${userName}"></span>
+                </div>
+                <p class="admin-message-text text-center" th:utext="${adminMessage}"></p>
             </div>
         </div>
     </div>
