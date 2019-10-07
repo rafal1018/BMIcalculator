@@ -32,7 +32,7 @@ public class BMIController {
         return modelAndView;
     }
 
-    @RequestMapping(value = "/admin/home", method = RequestMethod.GET)
+    @RequestMapping(value = "/admin/home", method = RequestMethod.POST)
     public ModelAndView getBMIParam(@RequestParam(value = "weight", required = false) Double weight,
                                     @RequestParam(value = "height", required = false)Double height,
                                     @Valid Result result, BindingResult validator){

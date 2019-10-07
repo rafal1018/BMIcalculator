@@ -11,5 +11,4 @@ import java.util.List;
 @Primary
 @Repository("resultRepository")
 public interface ResultRepository extends JpaRepository<Result, Integer> {
-    List<Result> findAllById(Integer id);
 }
