@@ -60,10 +60,10 @@ public class BMIController {
         return modelAndView;
     }
 
-    @RequestMapping(value = "/admin/all{}id")
+    @RequestMapping(value = "/admin/all{}id", method = RequestMethod.GET)
     public ModelAndView getResultById(Integer id){
         ModelAndView modelAndView = new ModelAndView();
-        User user = userService.findUserById(id);
+        User user = userService.find
         modelAndView.addAllObjects("getResult", userService.findUserById(id) != null ?
                 userService.findUserById(id).getResult() : null);
         modelAndView.setViewName("admin/all");

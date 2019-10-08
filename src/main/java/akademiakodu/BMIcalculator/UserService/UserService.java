@@ -13,6 +13,8 @@ import org.springframework.stereotype.Service;
 
 import java.util.Arrays;
 import java.util.HashSet;
+import java.util.List;
+import java.util.Optional;
 
 @Service("userService")
 public class UserService {
@@ -49,4 +51,7 @@ public class UserService {
         resultRepository.save(result);
     }
 
+    public User findUserById(Integer id){
+        return userRepository.findById(id) != null ? userRepository.findById(id).get() : null;
+    }
 }
