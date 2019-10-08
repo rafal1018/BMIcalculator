@@ -59,4 +59,14 @@ public class BMIController {
         modelAndView.setViewName("admin/home");
         return modelAndView;
     }
+
+    @RequestMapping(value = "/admin/all{}id")
+    public ModelAndView getResultById(Integer id){
+        ModelAndView modelAndView = new ModelAndView();
+        User user = userService.findUserById(id);
+        modelAndView.addAllObjects("getResult", userService.findUserById(id) != null ?
+                userService.findUserById(id).getResult() : null);
+        modelAndView.setViewName("admin/all");
+        return modelAndView;
+    }
 }
