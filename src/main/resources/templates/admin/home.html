@@ -14,14 +14,15 @@
     </header>
     <div class="main-cont center">
         <div class="form-cont center">
-            <form>
-                <div class="form-field">
-                    <label> height</label>
-                    <input type="number" placeholder="...cm"/>
+            <form role="form" th:action="@{/admin/home}"
+                  th:object="${result}}" method="post">
+                <div class="form-group">
+                    <label for="height"> height </label>
+                    <input class="form-control" name="height" th:field="*{height}" id="height" placeholder="...cm"/>
                 </div>
                 <div class="form-field">
                     <label>weight</label>
-                    <input type="number"  placeholder="...kg"/>
+                    <input type="number" placeholder="...kg"/>
                 </div>
                 <div class="form-field">
                     <label>sex</label>

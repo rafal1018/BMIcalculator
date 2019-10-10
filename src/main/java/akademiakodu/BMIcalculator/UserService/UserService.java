@@ -1,6 +1,5 @@
 package akademiakodu.BMIcalculator.UserService;
 
-
 import akademiakodu.BMIcalculator.Model.Result;
 import akademiakodu.BMIcalculator.Model.Role;
 import akademiakodu.BMIcalculator.Model.User;
@@ -13,8 +12,6 @@ import org.springframework.stereotype.Service;
 
 import java.util.Arrays;
 import java.util.HashSet;
-import java.util.List;
-import java.util.Optional;
 
 @Service("userService")
 public class UserService {
@@ -47,11 +44,12 @@ public class UserService {
         userRepository.save(user);
     }
 
-    public void addResult(Result result){
+    public void addResult(Result result) {
         resultRepository.save(result);
     }
 
-    public User findUserById(Integer id){
-        return userRepository.findById(id) != null ? userRepository.findById(id).get() : null;
+    public User findUserById(Integer id) {
+        return userRepository.findById(id) != null ?
+                userRepository.findById(id).get() : null;
     }
 }
