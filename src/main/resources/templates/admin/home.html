@@ -15,31 +15,29 @@
     <div class="main-cont center">
         <div class="form-cont center">
             <form role="form" th:action="@{/admin/home}"
-                  th:object="${result}}" method="post">
+                  th:object="${result}" method="post">
                 <div class="form-group">
-                    <label for="height"> height </label>
-                    <input class="form-control" name="height" th:field="*{height}" id="height" placeholder="...cm"/>
+                    <label for="height">height </label>
+                    <input class="form-control" name="height" th:field="*{height}" id="height" placeholder="....cm">
                 </div>
                 <div class="form-field">
-                    <label>weight</label>
-                    <input type="number" placeholder="...kg"/>
+                    <label for="weight"> weight </label>
+                    <input type="number" name="weight" th:field="*{weight}" id="weight" placeholder="....kg">
                 </div>
                 <div class="form-field">
-                    <label>sex</label>
-                    <select>
-                        <option value="male">male</option>
-                        <option value="female">female</option>
-                    </select>
+                    <br/><br/>
+                    <input type="radio" name="sex" th:value="male"/> male<br/>
+                    <input type="radio" name="sex" th:value="female"/> female<br/>
+                    <br/><br/>
                 </div>
                 <div>
-                    <input type="submit" value="Calc me!"/>
+                    <label>your score</label>
+                    <p th:text="${BMIresult}"/>
                 </div>
-
+                <div class="col-sm-9">
+                    <button type="submit" class="btn btn-primary"> Get result</button>
+                </div>
             </form>
-            <div>
-                <label>your score</label>
-                <input type="number" disabled="true" value=""/>
-            </div>
             <div class="panel panel-primary">
                 <div class="panel-heading">
                     <span th:utext="${userName}"></span>

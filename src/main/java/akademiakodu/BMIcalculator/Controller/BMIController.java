@@ -7,7 +7,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
-import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.ModelAndView;
 
@@ -19,25 +18,14 @@ public class BMIController {
     @Autowired
     private UserService userService;
 
-    private User user;
 
-    @RequestMapping(value = "/admin/home", method = RequestMethod.GET)
-    public ModelAndView home() {
+    @RequestMapping(value = "/admin/home", method = {RequestMethod.POST, RequestMethod.GET})
+    public ModelAndView getBMIParam(@RequestParam(value = "weight", required = false) Double weight,
+                                    @RequestParam(value = "height", required = false) Double height,
+                                    @Valid Result result) {
         ModelAndView modelAndView = new ModelAndView();
         Authentication auth = SecurityContextHolder.getContext().getAuthentication();
-        User getUser = userService.findUserByEmail(auth.getName());
-        this.user = getUser;
-        modelAndView.addObject("userName", "Welcome " + getUser.getName() + " " + getUser.getLastName());
-        modelAndView.setViewName("admin/home");
-        return modelAndView;
-    }
-
-    @RequestMapping(value = "/admin/home", method = RequestMethod.POST)
-    public ModelAndView getBMIParam(@RequestParam(value = "weight", required = false) Double weight,
-                                    @RequestParam(value = "height", required = false)Double height,
-                                    @Valid Result result, BindingResult validator){
-        ModelAndView modelAndView = new ModelAndView();
-
+        User user = userService.findUserByEmail(auth.getName());
         if (weight != null && height != null) {
             result.setUser(user);
             result.setResult(weight / (height * height));
@@ -48,20 +36,12 @@ public class BMIController {
                 System.out.print(e);
             }
         }
-        if (!validator.hasFieldErrors()) {
-            modelAndView.addObject("add", "yes");
-            modelAndView.addObject("result", result);
-        } else {
-            modelAndView.addObject("result", result);
-            modelAndView.addObject("error", "yes");
-        }
-
         modelAndView.setViewName("admin/home");
         return modelAndView;
     }
 
     @RequestMapping(value = "/admin/all{}id", method = RequestMethod.GET)
-    public ModelAndView getResultById(Integer id){
+    public ModelAndView getResultById(Integer id) {
         ModelAndView modelAndView = new ModelAndView();
         User user = userService.findUserById(id);
         modelAndView.addObject("getResult", userService.findUserById(id) != null ?
