@@ -18,7 +18,6 @@ public class BMIController {
     @Autowired
     private UserService userService;
 
-
     @RequestMapping(value = "/admin/home", method = {RequestMethod.POST, RequestMethod.GET})
     public ModelAndView getBMIParam(@RequestParam(value = "weight", required = false) Double weight,
                                     @RequestParam(value = "height", required = false) Double height,
@@ -28,7 +27,7 @@ public class BMIController {
         User user = userService.findUserByEmail(auth.getName());
         if (weight != null && height != null) {
             result.setUser(user);
-            result.setResult(weight / (height * height));
+            result.setResult(10000*weight/(height*height));
             modelAndView.addObject("BMIresult", result.getResult());
             try {
                 userService.addResult(result);
