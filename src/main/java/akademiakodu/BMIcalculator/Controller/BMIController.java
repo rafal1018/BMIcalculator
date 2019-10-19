@@ -11,6 +11,7 @@ import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.ModelAndView;
 
 import javax.validation.Valid;
+import java.text.DecimalFormat;
 
 @Controller
 public class BMIController {
@@ -28,7 +29,9 @@ public class BMIController {
         if (weight != null && height != null) {
             result.setUser(user);
             result.setResult(10000*weight/(height*height));
-            modelAndView.addObject("BMIresult", result.getResult());
+            DecimalFormat df = new DecimalFormat();
+            df.setMaximumFractionDigits(2);
+            modelAndView.addObject("BMIresult", df.format(result.getResult()));
             try {
                 userService.addResult(result);
             } catch (Exception e) {
