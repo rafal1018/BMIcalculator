@@ -1,18 +1,18 @@
 package akademiakodu.BMIcalculator.Model;
 
 public enum Info {
-    UNDERWEIGHT("You are in the underweigh rage"),
+    UNDERWEIGHT("You are in the underweight rage"),
     HEALTHY("You are in the healthy weight rage"),
     OVERWEIGHT("You are in the overweight rage"),
     OBESE("You are in the obese rage");
 
-    private final String Info;
+    private final String name;
 
-    Info(String info){
-        this.Info = info;
+    Info(String name){
+        this.name = name;
     }
 
-    public String getInfo(){
-        return Info;
+    public String getName(){
+        return name;
     }
 }
