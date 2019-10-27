@@ -36,19 +36,23 @@ public class BMIController {
             result.setResult(score);
             modelAndView.addObject("BMIresult", decimalFormat.format(result.getResult()));
 //            modelAndView.addObject("BMIresult", score);
+            if (score <= 18.5) {
+                result.setInfo(Info.UNDERWEIGHT.getName());
+                modelAndView.addObject("BMIMessage", Info.UNDERWEIGHT.getName());
+            } else if (score > 18.5 && score <= 24.9) {
+                result.setInfo(Info.HEALTHY.getName());
+                modelAndView.addObject("BMIMessage", Info.HEALTHY.getName());
+            } else if (score > 25 && score <= 29.9) {
+                result.setInfo(Info.OVERWEIGHT.getName());
+                modelAndView.addObject("BMIMessage", Info.OVERWEIGHT.getName());
+            } else if (score > 30 && score <= 39.9) {
+                result.setInfo(Info.OBESE.getName());
+                modelAndView.addObject("BMIMessage", Info.OBESE.getName());
+            }
             try {
                 userService.addResult(result);
             } catch (Exception e) {
                 System.out.print(e);
-            }
-            if (score <= 18.5) {
-                modelAndView.addObject("BMIMessage", Info.UNDERWEIGHT.getName());
-            } else if (score > 18.5 && score <= 24.9) {
-                modelAndView.addObject("BMIMessage", Info.HEALTHY.getName());
-            } else if (score > 25 && score <= 29.9) {
-                modelAndView.addObject("BMIMessage", Info.OVERWEIGHT.getName());
-            } else if (score > 30 && score <= 39.9) {
-                modelAndView.addObject("BMIMessage", Info.OBESE.getName());
             }
         }
         modelAndView.setViewName("admin/home");

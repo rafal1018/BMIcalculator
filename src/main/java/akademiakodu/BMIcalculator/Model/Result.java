@@ -1,9 +1,7 @@
 package akademiakodu.BMIcalculator.Model;
 
-import lombok.Data;
 
 import javax.persistence.*;
-
 
 @Entity
 @Table(name = "users_result")
@@ -22,6 +20,9 @@ public class Result {
 
     @Column(name = "result")
     private Double result;
+
+    @Column(name = "info")
+    private String info;
 
     @ManyToOne(fetch = FetchType.LAZY, optional = false)
     @JoinColumn(name = "user_id", nullable = false)
@@ -65,5 +66,13 @@ public class Result {
 
     public void setUser(User user) {
         this.user = user;
+    }
+
+    public String getInfo() {
+        return info;
+    }
+
+    public void setInfo(String info) {
+        this.info = info;
     }
 }
