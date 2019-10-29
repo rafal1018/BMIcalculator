@@ -13,6 +13,8 @@ import org.springframework.web.servlet.ModelAndView;
 
 import javax.validation.Valid;
 import java.text.DecimalFormat;
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
 
 @Controller
 public class BMIController {
@@ -30,22 +32,29 @@ public class BMIController {
         if (weight != null && height != null) {
             result.setUser(user);
             DecimalFormat decimalFormat = new DecimalFormat();
-            decimalFormat.setMaximumFractionDigits(2);
-//            Double score = Double.parseDouble(decimalFormat.format(10000*weight/(height*height)));
+            decimalFormat.setMaximumFractionDigits(1);
             Double score = (10000 * weight) / (height * height);
-            result.setResult(score);
-            modelAndView.addObject("BMIresult", decimalFormat.format(result.getResult()));
-//            modelAndView.addObject("BMIresult", score);
-            if (score <= 18.5) {
+
+            String formatScore = decimalFormat.format(score).replace(',', '.');
+            Double newScore = Double.valueOf(formatScore);
+
+            result.setResult(newScore);
+            modelAndView.addObject("BMIresult", result.getResult());
+
+            DateTimeFormatter dateTimeFormatter = DateTimeFormatter.ofPattern("yyy/MM/dd HH:mm:ss");
+            LocalDateTime localDateTime = LocalDateTime.now();
+            result.setDate(dateTimeFormatter.format(localDateTime));
+
+            if (newScore <= 18.5) {
                 result.setInfo(Info.UNDERWEIGHT.getName());
                 modelAndView.addObject("BMIMessage", Info.UNDERWEIGHT.getName());
-            } else if (score > 18.5 && score <= 24.9) {
+            } else if (newScore > 18.5 && newScore <= 24.9) {
                 result.setInfo(Info.HEALTHY.getName());
                 modelAndView.addObject("BMIMessage", Info.HEALTHY.getName());
-            } else if (score > 25 && score <= 29.9) {
+            } else if (newScore >= 25 && newScore <= 29.9) {
                 result.setInfo(Info.OVERWEIGHT.getName());
                 modelAndView.addObject("BMIMessage", Info.OVERWEIGHT.getName());
-            } else if (score > 30 && score <= 39.9) {
+            } else if (newScore >= 30 && newScore <= 39.9) {
                 result.setInfo(Info.OBESE.getName());
                 modelAndView.addObject("BMIMessage", Info.OBESE.getName());
             }

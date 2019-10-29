@@ -24,6 +24,9 @@ public class Result {
     @Column(name = "info")
     private String info;
 
+    @Column(name = "date")
+    private String date;
+
     @ManyToOne(fetch = FetchType.LAZY, optional = false)
     @JoinColumn(name = "user_id", nullable = false)
     private User user;
@@ -52,14 +55,6 @@ public class Result {
         this.weight = weight;
     }
 
-    public Double getResult() {
-        return result;
-    }
-
-    public void setResult(Double result) {
-        this.result = result;
-    }
-
     public User getUser() {
         return user;
     }
@@ -74,5 +69,21 @@ public class Result {
 
     public void setInfo(String info) {
         this.info = info;
+    }
+
+    public String getDate() {
+        return date;
+    }
+
+    public void setDate(String date) {
+        this.date = date;
+    }
+
+    public Double getResult() {
+        return result;
+    }
+
+    public void setResult(Double result) {
+        this.result = result;
     }
 }
