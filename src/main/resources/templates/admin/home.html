@@ -47,6 +47,11 @@
                 </div>
                 <p class="admin-message-text text-center" th:utext="${adminMessage}"></p>
             </div>
+            <div class="row">
+                <div>
+                    <a th:href="@{/admin/all(id=${userID})}">All results</a><br>
+                </div>
+            </div>
         </div>
     </div>
     <footer class="footer center">

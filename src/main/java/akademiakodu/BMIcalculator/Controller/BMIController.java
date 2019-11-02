@@ -22,6 +22,7 @@ public class BMIController {
     @Autowired
     private UserService userService;
 
+
     @RequestMapping(value = "/admin/home", method = {RequestMethod.POST, RequestMethod.GET})
     public ModelAndView getBMIParam(@RequestParam(value = "weight", required = false) Double weight,
                                     @RequestParam(value = "height", required = false) Double height,
@@ -29,6 +30,8 @@ public class BMIController {
         ModelAndView modelAndView = new ModelAndView();
         Authentication auth = SecurityContextHolder.getContext().getAuthentication();
         User user = userService.findUserByEmail(auth.getName());
+        modelAndView.addObject("userID", user.getId());
+
         if (weight != null && height != null) {
             result.setUser(user);
             DecimalFormat decimalFormat = new DecimalFormat();
@@ -68,13 +71,19 @@ public class BMIController {
         return modelAndView;
     }
 
-    @RequestMapping(value = "/admin/all{}id", method = RequestMethod.GET)
+    @RequestMapping(value = "/admin/all{id}", method = RequestMethod.GET)
     public ModelAndView getResultById(Integer id) {
         ModelAndView modelAndView = new ModelAndView();
         User user = userService.findUserById(id);
-        modelAndView.addObject("getResult", userService.findUserById(id) != null ?
+        modelAndView.addObject("results", userService.findUserById(id) != null ?
                 userService.findUserById(id).getResults() : null);
         modelAndView.setViewName("admin/all");
         return modelAndView;
     }
+
+//    @RequestMapping(value = "/admin/home", method = RequestMethod.GET)
+//    public void getUserId(){
+//        ModelAndView modelAndView = new ModelAndView();
+//        modelAndView.addObject("userID", us)
+//    }
 }
