@@ -9,6 +9,11 @@
 </head>
 <body>
 <div>
+    <form th:action="@{/logout}" method="get">
+        <button class="btn btn-md btn-danger btn-block" name="registration"
+                type="Submit">Logout
+        </button>
+    </form>
     <header class="header center">
         <h1>BMI <img src="https://png.pngtree.com/svg/20161017/6e1b86c79c.svg"/> CALC</h1>
     </header>
@@ -24,12 +29,6 @@
                     <label for="weight"> weight </label>
                     <input class="form-control" name="weight" th:field="*{weight}" id="weight" placeholder="....kg">
                 </div>
-<!--                <div class="form-field">-->
-<!--                    <br/><br/>-->
-<!--                    <input type="radio" name="sex" th:value="male"/> male<br/>-->
-<!--                    <input type="radio" name="sex" th:value="female"/> female<br/>-->
-<!--                    <br/><br/>-->
-<!--                </div>-->
                 <div class="form group">
                     <label>your score is:</label>
                     <output type="number" name="score" th:text="${BMIresult}"></output>

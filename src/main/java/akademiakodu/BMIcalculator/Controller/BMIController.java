@@ -22,11 +22,10 @@ public class BMIController {
     @Autowired
     private UserService userService;
 
-
     @RequestMapping(value = "/admin/home", method = {RequestMethod.POST, RequestMethod.GET})
-    public ModelAndView getBMIParam(@RequestParam(value = "weight", required = false) Double weight,
-                                    @RequestParam(value = "height", required = false) Double height,
-                                    @Valid Result result) {
+    public ModelAndView setBMI(@RequestParam(value = "weight", required = false) Double weight,
+                               @RequestParam(value = "height", required = false) Double height,
+                               @Valid Result result) {
         ModelAndView modelAndView = new ModelAndView();
         Authentication auth = SecurityContextHolder.getContext().getAuthentication();
         User user = userService.findUserByEmail(auth.getName());
@@ -80,10 +79,4 @@ public class BMIController {
         modelAndView.setViewName("admin/all");
         return modelAndView;
     }
-
-//    @RequestMapping(value = "/admin/home", method = RequestMethod.GET)
-//    public void getUserId(){
-//        ModelAndView modelAndView = new ModelAndView();
-//        modelAndView.addObject("userID", us)
-//    }
 }
