@@ -2,7 +2,7 @@ package akademiakodu.BMIcalculator.Controller;
 
 
 import akademiakodu.BMIcalculator.Model.User;
-import akademiakodu.BMIcalculator.UserService.UserService;
+import akademiakodu.BMIcalculator.Service.BMIService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.validation.BindingResult;
@@ -15,7 +15,7 @@ import javax.validation.Valid;
 public class LoginController {
 
     @Autowired
-    private UserService userService;
+    private BMIService BMIService;
 
     @RequestMapping(value = {"/", "/login"}, method = RequestMethod.GET)
     public ModelAndView login() {
@@ -36,7 +36,7 @@ public class LoginController {
     @RequestMapping(value = "/registration", method = RequestMethod.POST)
     public ModelAndView createNewUser(@Valid User user, BindingResult bindingResult) {
         ModelAndView modelAndView = new ModelAndView();
-        User userExists = userService.findUserByEmail(user.getEmail());
+        User userExists = BMIService.findUserByEmail(user.getEmail());
         if (userExists != null) {
             bindingResult
                     .rejectValue("email", "error.user",
@@ -45,7 +45,7 @@ public class LoginController {
         if (bindingResult.hasErrors()) {
             modelAndView.setViewName("registration");
         } else {
-            userService.saveUser(user);
+            BMIService.saveUser(user);
             modelAndView.addObject("successMessage", "User has been registered successfully");
             modelAndView.addObject("user", new User());
             modelAndView.setViewName("registration");

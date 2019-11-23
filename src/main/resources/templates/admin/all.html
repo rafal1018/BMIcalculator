@@ -14,44 +14,63 @@
 
 </head>
 <body>
-<div class="container-fluid">
-    <div class="row">
-        <div class="col-md-12">
-            <h3 class="text-warning text-center">
-                List of BMI results
-            </h3>
-        </div>
-    </div>
-    <div class="row">
-        <div class="col-md-8">
-<!--            <table id="bootstrap-data-table" class="table table-striped table-bordered">-->
-            <table border="1">
-                <thead>
-                <tr>
-                    <th>LP</th>
-                    <th>Date</th>
-                    <th>Weight</th>
-                    <th>BMI</th>
-                    <th>Info</th>
-                </tr>
-                </thead>
-                <tbody>
-                <tr th:each="result,iterationStatus  : ${results}">
-                    <td th:text="${iterationStatus.count}">1</td>
-                    <td th:text="${result.date}">Date</td>
-                    <td th:text="${result.weight}">Weight</td>
-                    <td th:text="${result.result}">BMI</td>
-                    <td th:text="${result.info}">Info</td>
-                </tr>
-                </tbody>
-            </table>
-            <br>
-            <a href="/admin/home">Back to main page</a>
+<center>
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-md-12">
+                <h3 class="text-warning text-center">
+                    List of BMI results
+                </h3>
             </div>
         </div>
-        <div class="col-md-4">
+        <form>
+            <div class="form-field">
+                <br/><br/>
+                <input type="radio" name="filter" value="Date desc"/>Date descending<br/>
+                <input type="radio" name="filter" value="Date asc"/>Date ascending <br/>
+                <input type="radio" name="filter" value="Weight desc"/>Weight descending <br/>
+                <input type="radio" name="filter" value="Weight asc"/>Weight ascending <br/>
+                <input type="radio" name="filter" value="BMI desc"/>BMI descending <br/>
+                <input type="radio" name="filter" value="BMI asc"/>BMI ascending
+                <br/><br/>
+            </div>
+            <div class="row">
+                <div class="col-md-8">
+                    <table border="1">
+                        <thead>
+                        <tr>
+                            <th>Date</th>
+                            <th>Weight</th>
+                            <th>BMI</th>
+                            <th>Info</th>
+                        </tr>
+                        </thead>
+                        <tbody>
+                        <tr th:each="result : ${results}">
+                            <td th:text="${result.date}">Date</td>
+                            <td th:text="${result.weight}">Weight</td>
+                            <td th:text="${result.result}">BMI</td>
+                            <td th:text="${result.info}">Info</td>
+                        </tr>
+                        </tbody>
+                    </table>
+                    <br>
+                    <a href="/admin/home">Back to main page</a>
+                </div>
+        </form>
+        <div class="row">
+            <div>
+                <a th:href="@{/admin/home/all/pdfreport(id=${userID})}">Donwload to PDF</a><br>
+            </div>
+        </div>
+        <div class="col-sm-9">
+            <button type="submit" class="btn btn-primary"> Get result</button>
         </div>
     </div>
+    <div class="col-md-4">
+    </div>
+</center>
+</div>
 </div>
 <script th:src="@{js/jquery.min.js}"></script>
 <script th:src="@{js/bootstrap.min.js}"></script>

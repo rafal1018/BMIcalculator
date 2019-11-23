@@ -1,4 +1,4 @@
-package akademiakodu.BMIcalculator.UserService;
+package akademiakodu.BMIcalculator.Service;
 
 import akademiakodu.BMIcalculator.Model.Result;
 import akademiakodu.BMIcalculator.Model.Role;
@@ -12,10 +12,10 @@ import org.springframework.stereotype.Service;
 
 import java.util.Arrays;
 import java.util.HashSet;
-import java.util.List;
 
-@Service("userService")
-public class UserService {
+
+@Service("BMIService")
+public class BMIService {
 
     private UserRepository userRepository;
     private RoleRepository roleRepository;
@@ -23,10 +23,10 @@ public class UserService {
     private BCryptPasswordEncoder bCryptPasswordEncoder;
 
     @Autowired
-    public UserService(UserRepository userRepository,
-                       RoleRepository roleRepository,
-                       ResultRepository resultRepository,
-                       BCryptPasswordEncoder bCryptPasswordEncoder) {
+    public BMIService(UserRepository userRepository,
+                      RoleRepository roleRepository,
+                      ResultRepository resultRepository,
+                      BCryptPasswordEncoder bCryptPasswordEncoder) {
         this.userRepository = userRepository;
         this.roleRepository = roleRepository;
         this.resultRepository = resultRepository;
@@ -45,12 +45,12 @@ public class UserService {
         userRepository.save(user);
     }
 
-    public void addResult(Result result) {
-        resultRepository.save(result);
-    }
-
     public User findUserById(Integer id) {
         return userRepository.findById(id) != null ?
                 userRepository.findById(id).get() : null;
+    }
+
+    public void addResult(Result result) {
+        resultRepository.save(result);
     }
 }

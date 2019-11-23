@@ -3,7 +3,7 @@ package akademiakodu.BMIcalculator.Controller;
 import akademiakodu.BMIcalculator.Model.Info;
 import akademiakodu.BMIcalculator.Model.Result;
 import akademiakodu.BMIcalculator.Model.User;
-import akademiakodu.BMIcalculator.UserService.UserService;
+import akademiakodu.BMIcalculator.Service.BMIService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
@@ -20,15 +20,16 @@ import java.time.format.DateTimeFormatter;
 public class BMIController {
 
     @Autowired
-    private UserService userService;
+    private BMIService BMIService;
 
     @RequestMapping(value = "/admin/home", method = {RequestMethod.POST, RequestMethod.GET})
     public ModelAndView setBMI(@RequestParam(value = "weight", required = false) Double weight,
                                @RequestParam(value = "height", required = false) Double height,
                                @Valid Result result) {
+
         ModelAndView modelAndView = new ModelAndView();
         Authentication auth = SecurityContextHolder.getContext().getAuthentication();
-        User user = userService.findUserByEmail(auth.getName());
+        User user = BMIService.findUserByEmail(auth.getName());
         modelAndView.addObject("userID", user.getId());
 
         if (weight != null && height != null) {
@@ -61,22 +62,12 @@ public class BMIController {
                 modelAndView.addObject("BMIMessage", Info.OBESE.getName());
             }
             try {
-                userService.addResult(result);
+                BMIService.addResult(result);
             } catch (Exception e) {
                 System.out.print(e);
             }
         }
         modelAndView.setViewName("admin/home");
-        return modelAndView;
-    }
-
-    @RequestMapping(value = "/admin/all{id}", method = RequestMethod.GET)
-    public ModelAndView getResultById(Integer id) {
-        ModelAndView modelAndView = new ModelAndView();
-        User user = userService.findUserById(id);
-        modelAndView.addObject("results", userService.findUserById(id) != null ?
-                userService.findUserById(id).getResults() : null);
-        modelAndView.setViewName("admin/all");
         return modelAndView;
     }
 }
