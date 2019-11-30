@@ -1,0 +1,84 @@
+table.allResultsTable {
+  width: 100%;
+  background-color: #c0c0c0;
+  border-collapse: collapse;
+  border-width: 2px;
+  border-color: #000000;
+  border-style: solid;
+  color: #000000;
+}
+
+table.allResultsTable td, table.allResultsTable th {
+  border-width: 2px;
+  border-color: #000000;
+  border-style: solid;
+  padding: 3px;
+}
+
+table.allResultsTable thead {
+  background-color: #0000ff;
+}
+
+.downloadButton {
+	background-color:#44c767;
+	border-radius:28px;
+	border:1px solid #18ab29;
+	display:inline-block;
+	cursor:pointer;
+	color:#ffffff;
+	font-family:Arial;
+	font-size:12px;
+	padding:8px 20px;
+	text-decoration:none;
+	text-shadow:0px 1px 0px #2f6627;
+}
+.downloadButton:hover {
+	background-color:#5cbf2a;
+}
+.downloadButton:active {
+	position:relative;
+	top:1px;
+}
+
+.backButton {
+	background-color:#44c767;
+	border-radius:28px;
+	border:1px solid #18ab29;
+	display:inline-block;
+	cursor:pointer;
+	color:#ffffff;
+	font-family:Arial;
+	font-size:12px;
+	padding:8px 20px;
+	text-decoration:none;
+	text-shadow:0px 1px 0px #2f6627;
+}
+.backButton:hover {
+	background-color:#5cbf2a;
+}
+.backButton:active {
+	position:relative;
+	top:1px;
+}
+
+.getResultButton {
+	background-color:#44c767;
+	border-radius:28px;
+	border:1px solid #18ab29;
+	display:inline-block;
+	cursor:pointer;
+	color:#ffffff;
+	font-family:Arial;
+	font-size:12px;
+	padding:8px 20px;
+	text-decoration:none;
+	text-shadow:0px 1px 0px #2f6627;
+}
+.getResultButton:hover {
+	background-color:#5cbf2a;
+}
+.getResultButton:active {
+	position:relative;
+	top:1px;
+}
+

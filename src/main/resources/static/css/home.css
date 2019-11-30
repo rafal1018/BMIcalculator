@@ -43,3 +43,65 @@ body {
   justify-content: center;
   align-items: center;
 }
+
+.logoutButton {
+	background-color:#44c767;
+	border:1px solid #18ab29;
+	display:inline-block;
+	cursor:pointer;
+	color:#ffffff;
+	font-family:Arial;
+	font-size:13px;
+	padding:10px 23px;
+	text-decoration:none;
+	text-shadow:0px 1px 7px #2f6627;
+}
+.logoutButton:hover {
+	background-color:#5cbf2a;
+}
+.logoutButton:active {
+	position:relative;
+	top:1px;
+}
+
+.getResultButton {
+	background-color:#44c767;
+	border-radius:28px;
+	border:1px solid #18ab29;
+	display:inline-block;
+	cursor:pointer;
+	color:#ffffff;
+	font-family:Arial;
+	font-size:12px;
+	padding:8px 20px;
+	text-decoration:none;
+	text-shadow:0px 1px 0px #2f6627;
+}
+.getResultButton:hover {
+	background-color:#5cbf2a;
+}
+.getResultButton:active {
+	position:relative;
+	top:1px;
+}
+
+.allResultsButton {
+	background-color:#44c767;
+	border-radius:28px;
+	border:1px solid #18ab29;
+	display:inline-block;
+	cursor:pointer;
+	color:#ffffff;
+	font-family:Arial;
+	font-size:12px;
+	padding:8px 20px;
+	text-decoration:none;
+	text-shadow:0px 1px 0px #2f6627;
+}
+.allResultsButton:hover {
+	background-color:#5cbf2a;
+}
+.allResultsButton:active {
+	position:relative;
+	top:1px;
+}

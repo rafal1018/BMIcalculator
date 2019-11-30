@@ -64,32 +64,32 @@ public class BMITableController {
 //                    modelAndView.addObject("results", userService.findUserById(user.getId()) != null ?
 //                            userService.findUserById(user.getId()).getResults(Sort.by("weight").ascending()) : null);
                     modelAndView.addObject("results", list.stream()
-                            .sorted(Comparator.comparing(Result::getDate))
+                            .sorted(Comparator.comparing(Result::getDate).reversed())
                             .collect(Collectors.toList()));
                     break;
                 case "Date asc":
                     modelAndView.addObject("results", list.stream()
-                            .sorted(Comparator.comparing(Result::getDate).reversed())
+                            .sorted(Comparator.comparing(Result::getDate))
                             .collect(Collectors.toList()));
                     break;
                 case "Weight desc":
                     modelAndView.addObject("results", list.stream()
-                            .sorted(Comparator.comparing(Result::getWeight))
+                            .sorted(Comparator.comparing(Result::getWeight).reversed())
                             .collect(Collectors.toList()));
                     break;
                 case "Weight asc":
                     modelAndView.addObject("results", list.stream()
-                            .sorted(Comparator.comparing(Result::getWeight).reversed())
+                            .sorted(Comparator.comparing(Result::getWeight))
                             .collect(Collectors.toList()));
                     break;
-                case "BMII desc":
-                    modelAndView.addObject("results", list.stream()
-                            .sorted(Comparator.comparing(Result::getResult))
-                            .collect(Collectors.toList()));
-                    break;
-                case "BMII asc":
+                case "BMI desc":
                     modelAndView.addObject("results", list.stream()
                             .sorted(Comparator.comparing(Result::getResult).reversed())
+                            .collect(Collectors.toList()));
+                    break;
+                case "BMI asc":
+                    modelAndView.addObject("results", list.stream()
+                            .sorted(Comparator.comparing(Result::getResult))
                             .collect(Collectors.toList()));
                     break;
             }

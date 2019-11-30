@@ -4,21 +4,14 @@
 <head>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-
-    <meta name="description" content="Source code generated using layoutit.com">
-    <meta name="author" content="Rafał Janeczek!">
-
-    <link th:href="@{css/bootstrap.min.css}" rel="stylesheet">
-    <link th:href="@{css/style.css}" rel="stylesheet">
-
+    <link rel="stylesheet" type="text/css" th:href="@{/css/all.css}"/>
 </head>
 <body>
 <center>
     <div class="container-fluid">
         <div class="row">
             <div class="col-md-12">
-                <h3 class="text-warning text-center">
+                <h3>
                     List of BMI results
                 </h3>
             </div>
@@ -34,9 +27,12 @@
                 <input type="radio" name="filter" value="BMI asc"/>BMI ascending
                 <br/><br/>
             </div>
+            <div>
+                <button type="submit" class="getResultButton"> Get result</button>
+            </div>
             <div class="row">
                 <div class="col-md-8">
-                    <table border="1">
+                    <table class="allResultsTable">
                         <thead>
                         <tr>
                             <th>Date</th>
@@ -47,24 +43,24 @@
                         </thead>
                         <tbody>
                         <tr th:each="result : ${results}">
-                            <td th:text="${result.date}">Date</td>
-                            <td th:text="${result.weight}">Weight</td>
-                            <td th:text="${result.result}">BMI</td>
-                            <td th:text="${result.info}">Info</td>
+                            <td style="text-align:center" th:text="${result.date}" >Date</td>
+                            <td style="text-align:center" th:text="${result.weight}">Weight</td>
+                            <td style="text-align:center" th:text="${result.result}">BMI</td>
+                            <td style="text-align:center" th:text="${result.info}">Info</td>
                         </tr>
                         </tbody>
                     </table>
-                    <br>
-                    <a href="/admin/home">Back to main page</a>
                 </div>
+            </div>
+<!--            <div>-->
+<!--                <button type="submit" class="btn btn-primary"> Get result</button>-->
+<!--            </div>-->
         </form>
         <div class="row">
             <div>
-                <a th:href="@{/admin/home/all/pdfreport(id=${userID})}">Donwload to PDF</a><br>
+                <a class="downloadButton" th:href="@{/admin/home/all/pdfreport(id=${userID})}">Donwload to PDF</a>
+                <a class="backButton" href="/admin/home">Back to main page</a>
             </div>
-        </div>
-        <div class="col-sm-9">
-            <button type="submit" class="btn btn-primary"> Get result</button>
         </div>
     </div>
     <div class="col-md-4">
